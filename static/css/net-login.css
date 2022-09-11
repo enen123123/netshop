@@ -1,0 +1,75 @@
+/*注册页面和登录页面公用同一个css文件，太相似了*/
+/*.register{*/
+/*	width: 100%;*/
+/*	height: 624px;*/
+/*	background-color: aliceblue;*/
+/*}*/
+/*谷歌浏览器不能识别，qq浏览器可以，所以未更改类名*/
+.login{
+	width: 100%;
+	height: 624px;
+	background-color: aliceblue;
+}
+.reghead{
+	margin-top: 10px;
+	margin-left: 300px;
+	margin-right: 300px;
+	height: 60px;
+	/* border: 2px solid; */
+	background-color: white;
+}
+.reghead ul{
+	float: left;
+}
+.reghead li{
+	list-style: none;
+	margin-right: 30px;
+	float: left;
+}
+.regbody{
+	margin-top: 3px;
+	margin-left: 300px;
+	margin-right: 300px;
+	height: 400px;
+	background-color: white;
+	
+}
+.regbodyleft{
+	float: left;
+	width: 400px;
+}
+/*.regbodyleft input{*/
+/*	width: 250px;*/
+/*	height: 40px;*/
+/*	margin-left: 150px;*/
+/*	margin-top: 50px;*/
+/*}*/
+.regbodyleft input{
+	width: 250px;
+	height: 40px;
+	margin-left: 150px;
+	margin-top: 30px;
+}
+.regbodyleft span{
+	margin-top: 10px;
+	margin-left: 150px;
+	color: red;
+}
+
+.regbodyright{
+	
+	float: right;
+	position: relative;
+	right: 150px;
+	top: 40px;
+}
+.regbodyright img{
+	width: 250px;
+}
+
+
+
+
+
+
+

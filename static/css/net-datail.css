@@ -1,0 +1,97 @@
+.detail{
+	background-color: aliceblue;
+	width: 1500px;
+	height: 800px;
+}
+.detail a{
+	text-decoration: none;
+	
+}
+.detailhead {
+	height: 40px;
+	margin: 20px;
+}
+.detailhead ul{
+	float: left;
+}
+.detailhead li{
+	list-style: none;
+	float: left;
+	margin-right: 9px;
+}
+.detailbody{
+	margin-left: 200px;
+	margin-top:50px;
+	width: 1000px;
+	height: 500px;
+	background-color: white;
+}
+.detailbodyleft{
+	height: 300px;
+	width: 200px;
+	float: left;
+}
+.detailbodyright{
+	height: 300px;
+	width: 500px;
+	float: left;
+	position: relative;
+	left: 300px;
+}
+.detailbodyright li{
+	list-style: none;
+}
+.color li{
+	margin-top: 20px;
+	float: left;
+	margin-right: 20px;
+	padding: 1px;
+	border: 2px solid darkgray;
+}
+.color img{
+	
+}
+.size{
+	margin-top: 80px;
+}
+.size li{
+	margin-right: 20px;
+	float: left;
+	height: 20px;
+	width: 20px;
+	border: 2px solid darkgray;
+	padding: 20px;
+	text-align: center;
+}
+.count{
+	margin-top: 50px;
+}
+.num{
+	margin-top: 50px;
+}
+.text{
+	text-align: center;
+	width: 40px;
+}
+.submit{
+	margin-top: 40px;
+	width: 120px;
+	height: 60px;
+}
+.rgoods li{
+
+}
+.rgood{
+	margin-left: 200px;
+
+}
+.rgood ul{
+	float: left;
+}
+.rgood li{
+	margin-left: 50px;
+	margin-right: 50px;
+	list-style: none;
+	float: right;
+}
+

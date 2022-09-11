@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    商品首页
+{% endblock %}
+
+{% block main %}
+
+    <link rel="stylesheet" type="text/css" href="/static/netshop.css">
+
+    <div class="classes" >
+        <div class="classes1">
+            <ul>
+                {% for category in categorylist %}
+                    <li  class="items"  >
+{#                    着重符号加橙#}
+                        <a href="/good/category/{{ category.id }}" {% if category.id == cid %}style="color: orange" {% endif %} >{{ category.cname }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="classes2">
+            <ul class="classes2-ul">
+                {% for goods in goodslist %}
+                    <li>
+                    <div class="classes2-2">
+                        <ol>
+                            <br>
+                            <li>
+{#                                    因为img的src会自动补充路径，被其视为绝对路径，加/可以让其不变#}
+                                <img src="/{{goods.getcolorimg}}" width="210px" height="260px">
+                            </li>
+                        </ol>
+                        <ol>
+                            <li>
+                                <a href="/good/gooddetails/{{ goods.id }}">{{ goods.gname }}</a>
+                            </li>
+                            <br>
+                            <li>
+                                ${{ goods.oldprice }}（特卖）
+                            </li>
+                        </ol>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+{#            因数据有限重复数据扩展#}
+            <ul class="classes2-ul">
+                {% for goods in goodslist %}
+                    <li>
+                    <div class="classes2-2">
+                        <ol>
+                            <br>
+
+                            <li>
+{#                                    因为img的src会自动补充路径，被其视为绝对路径，加/可以让其不变#}
+                                <img src="/{{goods.getcolorimg}}" width="210px" height="260px">
+                            </li>
+
+                        </ol>
+                        <ol>
+                            <li>
+                                <a href="/good/gooddetails/{{ goods.id }}">{{ goods.gname }}</a>
+                            </li>
+                            <br>
+                            <li>
+                                ${{ goods.oldprice }}（特卖）
+                            </li>
+                        </ol>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+            <ul class="classes2-ul">
+                {% for goods in goodslist %}
+                    <li>
+                    <div class="classes2-2">
+                        <ol>
+                            <br>
+
+                            <li>
+{#                                    因为img的src会自动补充路径，被其视为绝对路径，加/可以让其不变#}
+                                <img src="/{{goods.getcolorimg}}" width="210px" height="260px">
+                            </li>
+
+                        </ol>
+                        <ol>
+                            <li>
+                                <a href="/good/gooddetails/{{ goods.id }}">{{ goods.gname }}</a>
+                            </li>
+                            <br>
+                            <li>
+                                ${{ goods.oldprice }}（特卖）
+                            </li>
+                        </ol>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+            <ul class="classes2-ul">
+                {% for goods in goodslist %}
+                    <li>
+                    <div class="classes2-2">
+                        <ol>
+                            <br>
+
+                            <li>
+{#                                    因为img的src会自动补充路径，被其视为绝对路径，加/可以让其不变#}
+                                <img src="/{{goods.getcolorimg}}" width="210px" height="260px">
+                            </li>
+
+                        </ol>
+                        <ol>
+                            <li>
+                                <a href="/good/gooddetails/{{ goods.id }}">{{ goods.gname }}</a>
+                            </li>
+                            <br>
+                            <li>
+                                ${{ goods.oldprice }}（特卖）
+                            </li>
+                        </ol>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+            <ul class="classes2-ul">
+                {% for goods in goodslist %}
+                    <li>
+                    <div class="classes2-2">
+                        <ol>
+                            <br>
+
+                            <li>
+{#                                    因为img的src会自动补充路径，被其视为绝对路径，加/可以让其不变#}
+                                <img src="/{{goods.getcolorimg}}" width="210px" height="260px">
+                            </li>
+
+                        </ol>
+                        <ol>
+                            <li>
+                                <a href="/good/gooddetails/{{ goods.id }}">{{ goods.gname }}</a>
+                            </li>
+                            <br>
+                            <li>
+                                ${{ goods.oldprice }}（特卖）
+                            </li>
+                        </ol>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+
+        </div>
+    </div>
+    <br>
+    <div class="page" style="align-self: center">
+        {% if goodslist.has_previous %}
+        <a href="/good/category/{{ cid }}/page/{{ goodslist.previous_page_number }}">下一页</a>
+        {% endif %}
+
+        {% for page in pagelist %}
+{#            想要将所处页数更改强调样式，可以使用if来判断当前页，并给出样式#}
+            <a href="/good/category/{{ cid }}/page/{{ page }}">{{ page }}</a>
+        {% endfor %}
+
+        {% if goodslist.has_next %}
+            <a href="/good/category/{{ cid }}/page/{{ goodslist.next_page_number }}">下一页</a>
+        {% endif %}
+
+    </div>
+
+
+
+{% endblock %}
+
+{% block footerjs %}
+
+{% endblock %}
+
+

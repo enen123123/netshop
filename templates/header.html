@@ -1,0 +1,42 @@
+<div class="head">
+    <ul>
+{#        判断用户是否注册，以改变欢迎信息#}
+        {% if user %}
+            <li>
+                <a href="/user/main/">{{ user.uname }}</a>
+            </li>
+        {% else %}
+            <li>
+                <a href="/user/login/">登录</a>
+            </li>
+            <li>
+                <a href="/user/register/">免费注册</a>
+            </li>
+        {% endif %}
+        {% if user %}
+{#            <li>#}
+{#                <a href="/order/">我的订单</a>#}
+{#            </li>#}
+            <li>
+                <a href="/cart/queryall/">我的购物车</a>
+            </li>
+        {% endif %}
+
+        <li>
+            <a href="/good/about/">客户服务</a>
+        </li>
+
+    </ul>
+</div>
+
+<div class="search">
+    <ul>
+        <li>⏰整点开抢⌚</li>
+        <li>🛒买手砍价</li>
+        <li>👓验货质检</li>
+    </ul>
+    <form class="sousuo" method="get" action="/search/">
+        <input type="text" name="q" placeholder="请输入要搜索的宝贝">🔍
+    </form>
+
+</div>

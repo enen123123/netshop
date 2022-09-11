@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    用户登录
+{% endblock %}
+
+{% block main %}
+    <div class="login" >
+			<br>
+			<div class="reghead">
+				<ul>
+					<li style="font-size: 18px;color: red;">用户登录</li>
+					<li>尊敬的用户，欢迎您回来！！！</li>
+				</ul>
+
+			</div>
+
+			<div class="regbody">
+                <form method="post" action="/user/login/" onsubmit="return register()">
+                    {% csrf_token %}
+                    <div class="regbodyleft">
+{#                        <input type="email" name="acount" id="acount" placeholder="请输入邮箱" ><br>#}
+{#                        autocomplete="off"  可以不提示之前登陆过的内容#}
+                        <input type="text" name="acount" id="acount" placeholder="请输入邮箱" ><br>
+                        <span id="aspan">&emsp;</span>
+                        <input type="password" name="password" id="password" placeholder="请输入密码"><br>
+                        <span id="pspan">&emsp;</span>
+                        <input type="text" id="yzm" placeholder="请输入四位数字验证码" autocomplete="off" >
+                        <span id="yan_s" style="margin-left: 150px;">1</span>
+                        <span id="span_yzm"></span>
+
+
+{#                        <button>提交</button>#}
+                        <input type="submit" value="登录" style="background-color: coral;border: 0;" ><br>
+                    </div>
+                </form>
+
+				<div class="regbodyright">
+					<img src="/static/wel.png" alt="">
+				</div>
+			</div>
+		</div>
+{% endblock %}
+
+{% block footerjs %}
+    <script>
+        {#验证邮箱，密码格式#}
+        function isEmail(str){
+            {#正则验证邮箱格式#}
+            var reg = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+            return reg.test(str);
+        }
+        function register(){
+            {#测试能否执行打印，以确定那一步出问题#}
+            {#print('test')  #}
+            {#不需要js文件引入就能使用的办法#}
+            {#var aspan=document.getElementById('aspan');#}
+            {#aspan.innerText='邮箱格式不正确1';#}
+
+            //获取输入框的值
+            var acount =$('#acount').val();
+            var password =$('#password').val();
+            {#设置一个标识，用来提示是否完美满足格式要求#}
+            var flag=true;
+
+
+            {#简单校验#}
+
+            if( acount.length<6 || !isEmail(acount)){
+            {#if( acount.length<6){#}
+                $('#aspan').text('邮箱格式不正确');
+                flag=false;
+            }
+            else {
+                $('#aspan').text('√');
+            }
+
+            if(password.length<6){
+                $('#pspan').text('密码长度不能小于六位');
+                flag=false;
+            }
+            else {
+                $('#pspan').text('√');
+            }
+            {#调用验证码函数返回值#}
+            flag=yanzhengma()
+            if (!flag){
+                return false;
+            }
+
+            {#密码加密 未使用，方便查看数据传输正确性#}
+            {#hex_pwd=hex_md5;#}
+            {#$('#password').val(hex_pwd);#}
+        }
+        {#验证码#}
+        // 随机产生四位验证码js写法
+        $(function(){
+            var ran=Math.floor(Math.random()*9000+1000);
+            $('#yan_s').text(ran)
+            // var span=document.getElementById('yan_s');
+            // span.innerText=ran;
+        })
+        // 验证码
+        function yanzhengma(){
+            console.log($('#yzm').val())
+            console.log($('#yan_s').text())
+
+            if($('#yzm').val()==$('#yan_s').text()){
+                $('#span_yzm').text('√')
+                return true
+            }
+            else{
+                $('#span_yzm').text('×')
+                return false
+            }
+            // var yzm=document.getElementById('yzm').value;
+            // var span_1=document.getElementById('yan_s').innerText;
+            // var span=document.getElementById('span_yzm');
+
+            // if(yzm!=span_1){
+            // 	span.innerText='×';
+            // 	span.style.color='red';
+            // 	return false;
+            // }
+            // else{
+            // 	span.innerHTML='√';
+            // 	span.style.color='green';
+            // 	return true;
+            // }
+        }
+
+    </script>
+
+{% endblock %}
+
+

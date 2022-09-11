@@ -1,0 +1,173 @@
+{#商品详情#}
+
+{% extends 'base.html' %}
+
+{% block title %}
+    商品详情
+{% endblock %}
+
+{% block main %}
+<div class="detail">
+    <div class="detailhead">
+        <ul>
+            <li>
+                <a href="/good/">首页</a>
+            </li>
+            <li>></li>
+            <li>
+                <a href="/good/category/{{ goods.category_id }}">{{ goods.category.cname}}</a>
+            </li>
+            <li>></li>
+            <li>
+                <a href="">{{ goods.gname }}</a>
+            </li>
+
+        </ul>
+    </div>
+
+    <div class="detailbody">
+        <div class="detailbodyleft">
+            <img src="/{{ goods.getcolorimg}}" alt="" width="400px" height="500px">
+        </div>
+        <div class="detailbodyright">
+            <div class="line">
+                    <li><h3>{{ goods.gdesc }}</h3></li>
+                    <li><h1>现价：￥{{ goods.price }}</h1><h4>(原价：￥{{ goods.oldprice }})</h4></li>
+            </div>
+            <div class="color">
+
+                <li style="border: none;"><h4>颜色：</h4></li>
+                <div class="colortype">
+                    {% for color in goods.getcolor %}
+                        <li colorid="{{ color.id }}">
+                            <img src="/{{ color.colorurl}}" width="40px" height="40px">
+                        </li>
+                    {% endfor %}
+                </div>
+                <br>
+            </div>
+            <div class="size">
+                <li style="border: none;padding: 0px;">尺码：</li>
+                <div class="sizetype">
+                    {% for size in goods.getsize %}
+                        <li sizeid="{{ size.id }}">
+                            {{ size.sname }}
+                        </li>
+                    {% endfor %}
+
+                </div>
+
+
+                <br>
+            </div>
+            <div class="num">
+{#                <input type="button" value="-">#}
+                数量：<input type="number" value="1" class="text">
+{#                <input type="button" value="＋">#}
+            </div>
+{#        隐藏表单，获取数据#}
+            <form action="/cart/" method="post">
+				{% csrf_token %}
+				<input name="colorid" type="hidden">
+
+				<input name="goodsid" type="hidden" value="{{ goods.id }}">
+				<input name="sizeid" type="hidden">
+				<input name="count" type="hidden">
+
+				<input name="flag" value="add" type="hidden">
+
+                {#  判断是否登录，提交购物车数据#}
+                {% if not user %}
+                    <br><a href="/user/login" style="text-decoration: none;">请登陆后再加入购物车>></a>
+                {% else %}
+                    <input type="submit" class="submit" onclick="gocart()" value="加入购物车">
+                {% endif %}
+
+			</form>
+
+
+
+
+        </div>
+    </div>
+</div>
+
+<div class="detailfoot">
+    <div class="show1">
+{#      item将获取的字典形式key\value都获取#}
+        {% for gdname,gdurllist in goods.getdetailfoot.items %}
+            <p style="font-size: 25px;font-style:italic ">{{ gdname }}<hr></p>
+            {% for gdurl in gdurllist %}
+                <img src="/{{ gdurl}}" width="800px" height="1000px" style="margin-left: 350px;">
+            {% endfor %}
+
+        {% endfor %}
+
+
+    </div>
+</div>
+
+<div class="rgoods" >
+    <p>历史浏览<hr></p>
+    <div class="rgood">
+        <ul>
+            {% for recommend in recommendlist %}
+                <li>
+                    <img src="/{{ recommend.getcolorimg }}" width="400px" height="500px">
+                    <h4>{{ recommend.gname }}</h4>
+                    <h3>现价：￥{{ recommend.price }}</h3>
+                    <h4>(原价：￥{{ recommend.oldprice }})</h4>
+                </li>
+
+            {% endfor %}
+        </ul>
+
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block footerjs %}
+    <script>
+        $(function() {
+            {#颜色#}
+            var colorlist = $(".colortype li");
+            colorlist.click(function () {
+                $(colorlist).removeAttr('style')
+                $(colorlist).removeClass('imgactive')//去除类class
+
+                $(this).addClass('imgactive')//增加类属性class
+                $(this).css('border', '2px solid orange')
+            })
+            {#尺码#}
+            var sizelist = $(".sizetype li");
+            sizelist.click(function () {
+                $(sizelist).removeAttr('style')
+                $(sizelist).removeClass('sizeactive')//去除类class
+
+                $(this).addClass('sizeactive')//增加类属性class
+                $(this).css('border', '2px solid orange')
+
+            })
+        })
+
+        function gocart(){
+
+            {#if (!user) {#}
+            {#    window.location.href = '/user/login';#}
+
+
+
+             {#/将用户选择的颜色，尺寸，数量信息赋值给隐藏域中#}
+            {#(/<li class= "Min工mgactive" colorid="11"></li>#}
+            $('form').children('input[name="colorid"]').val($('.imgactive').attr('colorid'))
+            $('form').children('input[name="sizeid"]').val($('.sizeactive' ).attr('sizeid'))
+            $('form').children('input[name="count"]').val($('.num').children('input[type="number"]').val())
+
+        }
+
+
+    </script>
+
+{% endblock %}

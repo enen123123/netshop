@@ -1,0 +1,70 @@
+.address{
+	/*background-color: aliceblue;*/
+}
+.addressbody{
+	/*width: 1500px;*/
+	height: 900px;
+	background-color: aliceblue;
+	/*overflow: auto;*/
+}
+.addressbody a{
+	text-decoration: none;
+	/* color:black; */
+}
+.addressbodywel{
+	
+	margin-left: 20px;
+	margin-top: 20px;
+	height: 20px;
+	width: 100%;
+	/* background-color: white; */
+}
+.addressbodyleft{
+	float: left;
+	height: 300px;
+	width: 250px;
+	background-color: white;
+	margin-top: 100px;
+	margin-left: 200px;
+}
+.addressbodyright{
+	float: right;
+	height: 400px;
+	width: 800px;
+	background-color: white;
+	margin-top: 100px;
+	margin-right: 200px;
+}
+.addressbodyrighttop{
+	width: 100%;
+	/* height: 200px; */
+	/* float: left; */
+	padding: 20px;
+	border-bottom: 4px dotted aliceblue;
+	background-color: white;
+	
+}
+.addressbodyrighttop1 ul{
+	/*float: left;*/
+}
+.addressbodyrighttop1 li{
+	list-style: none;
+	/*float: left;*/
+	/* 虚线框线状dashed,虚线框点状dotted,实线边框(solid) */
+	border: 3px dashed orange;
+	margin: 10px;
+	width: 500px;
+}
+
+
+.addressbodyrightbottom{
+	width: 100%;
+	height: 250px;
+	padding: 20px;
+	background-color: aquamarine;
+}
+
+
+
+
+

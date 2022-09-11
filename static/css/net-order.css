@@ -1,0 +1,40 @@
+.ordermakesure {
+	
+}
+.orderleft{
+	width: 900px;
+	
+}
+.orderleftaddr{
+	background-color: aliceblue;
+}
+.orderleftpay{
+	background-color: aliceblue;
+}
+.orderleftpay li{
+	list-style: none;
+	float: left;
+	margin-right: 30px;
+}
+.orderright{
+	float: right;
+	margin-right: 0px;
+	position: absolute;
+	top: 175px;
+	right: -60px;
+}
+.orderright li{
+	list-style: none;
+	
+}
+.orderrightdet{
+
+}
+.orderrightdet li{
+	float: left;
+	margin-right: 80px;
+	
+}
+.orderrightpri{
+	width: 600px;
+}

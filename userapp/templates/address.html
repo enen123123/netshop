@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    地址管理
+{% endblock %}
+
+{% block main %}
+    <div class="address">
+
+        <div class="addressbody" >
+            <br />
+            <div class="addressbodywel">
+                <a href="/user/main/">欢迎回来：[{{ user.uname }}]</a>
+            </div>
+            <div class="addressbodyleft">
+                <img src="/static/photo.png" width="100px" style="margin-left: 60px;">
+                <p>[enen123123]</p>
+                <a href="/user/login/">[退出登录]</a>
+                <hr />
+                <a href="/cart/queryall/">我的购物车</a><br />
+                <a >地址管理</a><br />
+                <a href="/good/">返回首页</a><br />
+            </div>
+            <div class="addressbodyright">
+                <div class="addressbodyrighttop">
+                    <h3>地址管理(请至少设置一个地址)：</h3>
+                    <div class="addressbodyrighttop1">
+                        <ul class="ul1">
+                            {% for addrobj in addrlist %}
+                                <li class="li1">
+                                    {% if addrobj.isdefault == 1 %}
+                                        <p style="background-color:lightcoral;width: 90px; float: right; margin-right: 20px; ">默认地址✨</p>
+                                    {% endif %}
+                                    <p>🙍{{ addrobj.aname }}📱{{ addrobj.aphone}}</p>
+                                        <p>📍地址‍：{{ addrobj.addr }}</p>
+                                        <a href="/user/deleteaddr/{{ addrobj.id }}" style="color: orange">&nbsp;删除</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+
+                        <p></p>
+                    </div>
+                </div>
+                <div class="addressbodyrightbottom">
+                    <h3>新增地址：</h3>
+                    <div class="addressbodyrightbottom1">
+                        <form id="frm" action="/user/address/" method="post" onsubmit="alert(hello)" >
+                            {% csrf_token %}
+                            <table>
+                            <tr>
+                                <td>收货人</td>
+                                <td><input type="text" name="aname" ></td>
+                            </tr><br>
+                            <tr>
+                                <td>手机号码</td>
+                                <td><input type="text" name="aphone" ></td>
+                            </tr>
+                            <tr>
+                                <td>所在地</td>
+                                <td>
+                                    <select name="" id="province" onchange="loadcity()">
+{#											<option value="">西安市</option>#}
+                                    </select>
+                                    <select name="" id="city" onchange="loadtown()">
+{#											<option value="">西安市</option>#}</select>
+                                    <select name="" id="town">
+{#											<option value="">西安市</option>#}
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>详细地址</td>
+{#									<td><input type="text" name="addr" onfocus="fillcontent(this)" style="height: 60px;" placeholder="100字以内详细信息" ></td>#}
+                                <td>
+                                    <textarea name="addr" onfocus="fillcontent(this)" cols="30" rows="10" style="height: 60px;width: auto" ></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    &emsp;
+                                    <input type="submit" value="保存" onclick="$('#frm').submit()" >
+                                    <input type="button" value="取消">
+                                </td>
+
+                            </tr>
+                        </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block footerjs %}
+    <script>
+        $(function (){
+            loadprovince();
+        })
+        function loadprovince(){
+            loadarea(0,'province',loadcity);
+        }
+        function loadcity(){
+            loadarea($('#province').val(),'city',loadtown);
+        }
+        function loadtown(){
+            loadarea($('#city').val(),'town',);
+        }
+        function loadarea(pid,selectid,nextload){
+            {#清空当前下拉框内容#}
+            $('#'+selectid).empty();
+            {#通过ajax获取请求地址#}
+            $.get('/user/loadaddr/',{pid:pid},function(result){
+                console.log(result.jarealist)
+                {#转化为数组#}
+                var arealist=JSON.parse(result.jarealist);
+                //遍历
+                for (var i=0;i<arealist.length;i++){
+                    var area=arealist[i];
+                    //将数据添加到select标签内部  pk对应主键，可在网页查看
+                    $('#'+selectid).append('<option value="'+area.pk+'">'+area.fields.areaname+'</option>');
+                }
+                if (nextload!=null){
+                    nextload()
+                }
+            })
+        }
+        function fillcontent(txt){
+            //获得用户选择的省市县
+            var province=$('#province>option:selected').text();
+            var city=$('#city>option:selected').text();
+            var town=$('#town>option:selected').text();
+
+            //将信息填入
+            var txtall=province+'-'+city+'-'+town+':';
+            $(txt).val(txtall);
+
+        }
+    </script>
+{% endblock %}
+
+

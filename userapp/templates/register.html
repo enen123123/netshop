@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    用户注册页面
+{% endblock %}
+
+{% block main %}
+    <div class="register">
+			<br>
+			<div class="reghead">
+				<ul>
+					<li style="font-size: 18px;color: red;">新用户注册</li>
+					<li>尊敬的用户，欢迎您回来！！！</li>
+				</ul>
+
+			</div>
+
+			<div class="regbody">
+                <form method="post" action="/user/register/" onsubmit="return register()">
+                    {% csrf_token %}
+                    <div class="regbodyleft">
+                        <input type="email" name="acount" id="acount" placeholder="请输入邮箱" ><br>
+{#                        <input type="text" name="acount" id="acount" placeholder="请输入邮箱" ><br>#}
+                        <span id="aspan">&emsp;</span>
+                        <input type="password" name="password" id="password" placeholder="请输入密码"><br>
+
+                        <span id="pspan">&emsp;</span>
+{#                        <button>提交</button>#}
+
+                        <input type="submit" value="注册" style="background-color: coral;border: 0;" ><br>
+                    </div>
+                </form>
+
+				<div class="regbodyright">
+					<img src="/static/wel.png" alt="">
+				</div>
+			</div>
+		</div>
+
+{% endblock %}
+
+{% block footerjs %}
+    <script>
+        function isEmail(str){
+            {#正则验证邮箱格式#}
+            var reg = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+            return reg.test(str);
+        }
+        function register(){
+            {#测试能否执行打印，以确定那一步出问题#}
+            {#print('test')  #}
+            {#不需要js文件引入就能使用的办法#}
+            {#var aspan=document.getElementById('aspan');#}
+            {#aspan.innerText='邮箱格式不正确1';#}
+
+            //获取输入框的值
+            var acount =$('#acount').val();
+            var password =$('#password').val();
+            {#设置一个标识，用来提示是否完美满足格式要求#}
+            var flag=true;
+
+
+            {#简单校验#}
+
+            if( acount.length<6 || !isEmail(acount)){
+            {#if( acount.length<6){#}
+                $('#aspan').text('邮箱格式不正确');
+                flag=false;
+            }
+            else {
+                $('#aspan').text('√');
+            }
+
+            if(password.length<6){
+                $('#pspan').text('密码长度不能小于六位');
+                flag=false;
+            }
+            else {
+                $('#pspan').text('√');
+            }
+            if (!flag){
+                return false;
+            }
+
+            {#密码加密 未使用，方便查看数据传输正确性#}
+            {#hex_pwd=hex_md5;#}
+            {#$('#password').val(hex_pwd);#}
+        }
+    </script>
+
+{% endblock %}
+
+
+
+
+
+
+

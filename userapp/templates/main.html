@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    用户中心
+{% endblock %}
+
+{% block main %}
+    <div class="main">
+
+			<div class="mainbody">
+				<br />
+				<div class="mainbodywel">
+					<a >欢迎回来：[{{ user.uname }}]</a>
+				</div>
+
+				<div class="mainbodyleft">
+					<img src="/static/photo.png" width="100px" style="margin-left: 60px;">
+					<p>[{{ user.uname }}]</p>
+					<a href="/user/login/">[退出登录]</a>
+					<hr />
+					<a href="/cart/queryall/">我的购物车</a><br />
+					<a href="/user/address/">地址管理</a><br />
+					<a href="/good/">返回首页</a><br />
+				</div>
+
+				<div class="mainbodyright">
+
+					<div class="mainbodyrighttop">
+						<ul>
+							<li><img src="/static/photo.png" width="100px" style="margin-left: 60px;"></li>
+							<li>
+								<p>[{{ user.uname }}]</p>
+{#								<p>[123@163.com]</p>#}
+							</li>
+							<li>
+								<br />
+{#								<a href="">[修改个人资料]</a>#}
+							</li>
+							<hr />
+						</ul>
+					</div>
+
+					<div class="mainbodyrightbottom">
+						<ul>
+							<li><img src="/static/shoucang.png" width="100px" style="margin-left: 60px;"></li>
+							<li>
+								<br />
+								<a href="">待支付订单</a><br />
+								<a href="/cart/queryall/">支付订单详情>></a><br />
+							</li>
+
+							<li><img src="/static/gouwu.png" width="100px" style="margin-left: 60px;"></li>
+							<li>
+								<br />
+								<a href="">待收获订单</a><br />
+								<a href="/cart/queryall/">待收获订单详情>></a><br />
+							</li>
+						</ul>
+					</div>
+
+
+
+				</div>
+			</div>
+		</div>
+{% endblock %}
+
+
+
+
+
+
+
+

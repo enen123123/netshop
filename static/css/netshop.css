@@ -1,0 +1,112 @@
+.head{
+	background-color: aliceblue;
+	height: 40px;
+}
+.head ul{
+	
+	list-style: none;
+	float: right;
+}
+.head li{
+	float: left;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+.head a{
+	text-decoration: none;
+}
+.search{
+	margin-top: 13px;
+	
+	height: 60px;
+}
+.search ul{
+	float: left;
+	list-style: none;
+	position:relative;
+	left:600px;
+	
+	
+}
+.search li{
+	float: left;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+.search form{
+	background-color: aliceblue;
+	border: 5px solid aliceblue;
+	margin-top: 15px;
+	float: right;
+}
+.classes{
+
+}
+.classes1{
+	height: 40px;
+	background-color: white;
+	margin-bottom: 20px;
+}
+.classes1 ul{
+	float: left;
+	
+}
+.classes1 a{
+	text-decoration: none;
+}
+.classes1 li{
+	list-style: none;
+	float: left;
+	margin-left: 5px;
+	margin-right: 5px;
+	
+}
+.classes2{
+	margin-top: 13px;
+	background-color: aliceblue;
+	height: 820px;
+
+}
+.classes2-ul{
+	float: left;
+
+}
+.classes2-ul li{
+	list-style: none;
+	float: left;
+}
+.classes2-2{
+	position:relative;
+	width: 280px;
+	height: 380px;
+	background-color: aliceblue;
+}
+.classes2-2 a{
+	text-decoration: none;
+	color: darkblue;
+}
+.classes2-2 ol{
+	float: left;
+}
+.classes2-2 li{
+	list-style: none;
+	float: left;
+	
+}
+.page{
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+
+	background-color:aliceblue;
+}
+.page a{
+	text-decoration: none;
+}
+/* 将某个想要着重的地方变红 */
+/* <!-- 示例使用着重符号，当id="active"即可强调 --> */
+#active{
+	/* color: coral; */
+	border: 2px solid orange;
+}
+

@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    结算页面
+{% endblock %}
+
+{% block main %}
+    <div class="ordermakesure">
+        <p>订单确认</p><hr />
+        <div class="orderleft">
+            <div class="orderleftaddr">
+
+                <p>地址信息</p><hr />
+
+                <p>{{ addr.aname}} [默认地址]</p>
+                <p>{{ addr.addr }}</p>
+                <p>{{ addr.aphone }}</p>
+
+            </div>
+
+            <div class="orderleftpay">
+                <p>支付方式</p><hr />
+                <li ><img src="/static/payw.jpg" width="80px"/></li>
+                <li ><img src="/static/payz.jpg" width="80px"/></li>
+                <li ><img src="/static/payy.jpg" width="80px"/></li>
+                <br /><br /><br /><br /><br />
+            </div>
+        </div>
+
+        <div class="orderright">
+            <p>订单内容</p><hr />
+            {% for cartitem in cartitemslist %}
+                <div class="orderrightdet">
+                    <li><img src="/{{ cartitem.getcolor.colorurl}}" width="120px" height="90px" style="margin-top: 20px;"/></li>
+                    <li style="width: 250px">
+                        <p>{{ cartitem.getgoods.gname }}</p>
+                        <p>颜色：{{ cartitem.getcolor.colorname }}</p>
+                        <p>数量：{{ cartitem.count }}</p>
+                    </li>
+                    <li style="margin-top: 130px;">￥{{ cartitem.gettotalprice }}</li>
+                </div>
+            {% endfor %}
+
+            <div class="orderrightpri">
+                <hr />
+                <p>商品金额：<span>￥{{ totalprice }}</span></p>
+                <p>优惠金额：<span>￥0.00</span></p>
+                <p>运费：<span>￥0</span></p>
+                <hr />
+                <p>合计：<span>￥{{ totalprice }}</span></p>
+                <input type="submit" value="支付" style="width: 100px;height: 50px;" onclick="alert('支付成功！！！')"/>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block footerjs %}
+
+{% endblock %}

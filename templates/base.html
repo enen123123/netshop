@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}
+
+    {% endblock %}</title>
+
+    <link rel="stylesheet" type="text/css" href="/static/netshop.css">
+    <link rel="stylesheet" type="text/css" href="/static/net-datail.css">
+    <link rel="stylesheet" type="text/css" href="/static/net-register.css">
+    <link rel="stylesheet" type="text/css" href="/static/net-main.css">
+    <link rel="stylesheet" type="text/css" href="/static/net-login.css">
+    <link rel="stylesheet" type="text/css" href="/static/net-address.css">
+    <link rel="stylesheet" type="text/css" href="/static/net-manager.css">
+    <link rel="stylesheet" type="text/css" href="/static/net-order.css">
+
+
+
+    <script src="/static/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
+
+
+    {% block headerjs %}
+    
+    {% endblock %}
+</head>
+<body>
+    {% include 'header.html' %}
+
+    {% block main %}
+
+    {% endblock %}
+
+    {% block footerjs %}
+
+    {% endblock %}
+
+</body>
+</html>
